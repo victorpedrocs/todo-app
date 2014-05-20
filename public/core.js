@@ -34,4 +34,27 @@ function mainController($scope, $http) {
             console.log('Error: ' + data);
         });
     };
+    
+    $scope.updateTodo = function(id, done) {
+        $http.post('/api/todos/' + id + '/' + done)
+        .success(function(data) {
+            $scope.todos = data;
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    };
+    
+    $scope.archiveTodo = function(id) {
+        console.log('will archive s' + id);
+        $http.post('/api/todos/arquivar/' + id)
+        .success(function(data) {
+            $scope.todos = data;
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    };
 }

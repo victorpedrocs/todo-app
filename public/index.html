@@ -5,8 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>ToDO App</title>
-
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+        
         <style>
             html {
                 overflow: scroll;
@@ -17,7 +16,10 @@
             #todo-list {
                 margin-bottom: 30px;
                 }
-            </style>
+        </style>
+        
+        <link rel="stylesheet" href="css/style.css" type="text/css" >
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
@@ -39,8 +41,10 @@
                     <!-- LOOP OVER THE TODOS IN $scope.todos -->
                     <div class="checkbox" ng-repeat="todo in todos">
                         <label>
-                            <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+                            <input type="checkbox" ng-model="todo.done" ng-click="updateTodo(todo._id, todo.done)"> 
+                            <span class="done-{{todo.done}}">{{ todo.text }}</span>
                         </label>
+                        <button class="btn btn-danger btn-xs" ng-click="deleteTodo(todo._id)">delete</button>
                     </div>
 
                 </div>
