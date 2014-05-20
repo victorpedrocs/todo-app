@@ -42,9 +42,10 @@
                     <div class="checkbox" ng-repeat="todo in todos">
                         <label>
                             <input type="checkbox" ng-model="todo.done" ng-click="updateTodo(todo._id, todo.done)"> 
-                            <span class="done-{{todo.done}}">{{ todo.text }}</span>
+                            <span class="done-{{todo.done}} archived-{{todo.archived}}">{{ todo.text }}</span>
                         </label>
                         <button class="btn btn-danger btn-xs" ng-click="deleteTodo(todo._id)">delete</button>
+                        <button class="btn btn-warning btn-xs" ng-click="archiveTodo(todo._id, todo.archived, todo.done)">archive</button>
                     </div>
 
                 </div>

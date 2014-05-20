@@ -4,7 +4,8 @@ var Todo = require('./model/todo');
 module.exports = function(app){
     // retrieve all todos
     app.get('/api/todos', function(req, res) {
-        Todo.find(function(err, todos) {
+        Todo.find(//{archived : false},
+        function(err, todos) {
             if(err)
                 res.send(err);
             res.json(todos);
@@ -32,7 +33,8 @@ module.exports = function(app){
             if(err)
                 res.send(err);
             
-            Todo.find(function(err, todos) {
+            Todo.find(//{archived : false},
+            function(err, todos) {
                 if (err)
                     res.send(err);
                 res.json(todos);
@@ -50,7 +52,8 @@ module.exports = function(app){
             if(err)
                 res.send(err);
 
-            Todo.find(function(err, todos) {
+            Todo.find(//{archived : false},
+            function(err, todos) {
                 if (err)
                     res.send(err);
                 res.json(todos);
@@ -59,17 +62,18 @@ module.exports = function(app){
     });
     
     // archive a todo
-    app.post('/api/todos/arquivar/:todo_id', function(req,res) {
+    app.post('/api/todos/:todo_id/archive/:archive', function(req,res) {
         console.log('will archive' + req.params.todo_id);
         Todo.update({
             _id : req.params.todo_id
         },
-        {$set:{archived : true}},
+        {$set:{archived : req.params.archive}},
         function(err, todo) {
             if(err)
                 res.send(err);
 
-            Todo.find(function(err, todos) {
+            Todo.find(//{archived : false},
+            function(err, todos) {
                 if (err)
                     res.send(err);
                 res.json(todos);
@@ -86,7 +90,8 @@ module.exports = function(app){
             if (err)
                 res.send(err);
             
-            Todo.find(function(err, todos) {
+            Todo.find(//{archived : false},
+            function(err, todos) {
                 if (err)
                     res.send(err);
                 
@@ -101,3 +106,5 @@ module.exports = function(app){
     });
 	
 }
+
+// NPCTELE12EX

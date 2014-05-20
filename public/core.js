@@ -46,15 +46,16 @@ function mainController($scope, $http) {
         });
     };
     
-    $scope.archiveTodo = function(id) {
-        console.log('will archive s' + id);
-        $http.post('/api/todos/arquivar/' + id)
-        .success(function(data) {
-            $scope.todos = data;
-            console.log(data);
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
+    $scope.archiveTodo = function(id, archived, done) {
+        if (done){
+            $http.post('/api/todos/' + id + '/archive/' + !archived)
+            .success(function(data) {
+                $scope.todos = data;
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });   
+        }
     };
 }
