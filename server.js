@@ -15,7 +15,7 @@
 
     // Todo Model =================================
     var Todo = mongoose.model('Todo', {
-    text : String
+        text : String
     });
 
     // routes =======================
@@ -67,5 +67,5 @@
     });
 
     // listen (start app with node server.js) ======================================
-    app.listen(8080);
-    console.log("App listening on port 8080");
+    app.listen(8888);
+    console.log("App listening on port 8888");
