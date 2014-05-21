@@ -4,7 +4,8 @@
     var express     = require('express');
     var app         = express(); // create the app with express
     var mongoose    = require('mongoose'); // mongoose for mongodb
-    var port        = 8888;
+    var serverPort  = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+	var serverIpAdress = process.env.OPENSHIFT_NODEJS_IP || 127.0.0.1;
     var database    = require('./config/database');
 
     // configuration =========================================
@@ -23,5 +24,6 @@
     // listen ================================================
     // (start app with node server.js)
 
-    app.listen(port);
-    console.log("App listening on port: " + port);
+    app.listen(serverPort, serverIpAdress, function(){
+		console.log('App listening on ' + serverIpAdress + ' on port ' + serverPort);
+	});
