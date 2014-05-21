@@ -1,0 +1,12 @@
+/* Styles for the main page */
+@charset="UTF-8";
+
+span.done-true{
+    text-decoration: line-through;
+    color: grey;
+}
+
+span.archived-true{
+    color: grey;
+    text-shadow: 0.8pt;
+}
